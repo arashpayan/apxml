@@ -26,10 +26,16 @@
 @synthesize name;
 @synthesize value;
 
+/*
+ Returns an APAttribute with the specified name and value.
+*/
 + (id)attributeWithName:(NSString*)aName value:(NSString*)aValue {
 	return [[[APAttribute alloc] initWithName:aName value:aValue] autorelease];
 }
 
+/*
+ Initializes the receiver with a specified name and value
+*/
 - (id)initWithName:(NSString*)aName value:(NSString*)aValue {
 	if (self = [super init])
 	{

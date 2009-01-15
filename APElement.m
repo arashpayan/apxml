@@ -27,10 +27,16 @@
 @synthesize name;
 @synthesize parent;
 
+/*
+ Returns a new element with the specified tag name
+*/
 + (id)elementWithName:(NSString*)aName {
 	return [[[APElement alloc] initWithName:aName] autorelease];
 }
 
+/*
+ Returns a new element with the specified tag name and attributes
+*/
 + (id)elementWithName:(NSString*)aName attributes:(NSDictionary*)someAttributes {
 	APElement *anElement = [[[APElement alloc] initWithName:aName] autorelease];
 	[anElement addAttributes:someAttributes];
@@ -38,6 +44,9 @@
 	return anElement;
 }
 
+/*
+ Initializes the element with the specified tag name
+*/
 - (id)initWithName:(NSString*)aName {
 	if (self = [super init])
 	{
@@ -51,17 +60,24 @@
 	return self;
 }
 
+/*
+ Adds the specified attribute to the element
+*/
 - (void)addAttribute:(APAttribute*)anAttribute {
 	[attributes setObject:anAttribute.value forKey:anAttribute.name];
 }
 
+/*
+ Adds the specified name and value as an attribute for the element
+*/
 - (void)addAttributeNamed:(NSString*)aName withValue:(NSString*)aValue {
 	[attributes setObject:aValue forKey:aName];
 }
 
 /*
+ Adds a dictionary of name/values to the element.
  All keys and values in the supplied dictionary must be of type NSString*
- */
+*/
 - (void)addAttributes:(NSDictionary*)someAttributes {
 	if (someAttributes != nil)
 	{
@@ -69,10 +85,16 @@
 	}
 }
 
+/*
+ Adds the specified element as a child of the receiver.
+*/
 - (void)addChild:(APElement*)anElement {
 	[childElements addObject:anElement];
 }
 
+/*
+ Appends the specified string to the element's text value
+*/
 - (void)appendValue:(NSString*)aValue {
 	if (value == nil)
 		value = [[NSMutableString alloc] init];
@@ -80,18 +102,33 @@
 	[value appendString:aValue];
 }
 
+/*
+ Returns the number of attributes on this element
+*/
 - (int)attributeCount {
 	return [attributes count];
 }
 
+/*
+ Returns the number of child elements
+*/
 - (int)childCount {
 	return [childElements count];
 }
 
+/*
+ Returns an array of APElements that are direct descendants of this element.
+ Returns an empty array if the element has no children.
+*/
 - (NSArray*)childElements {
 	return [NSArray arrayWithArray:childElements];
 }
 
+/*
+ Returns an array of APElements that are direct descendants of this element
+ and have the specified tag name.
+ Returns an empty array if the element has no children.
+*/
 - (NSMutableArray*)childElements:(NSString*)aName {
 	NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
 	
@@ -106,6 +143,10 @@
 	return result;
 }
 
+/*
+ Returns the first direct descendant of this element.
+ Returns nil if the element has no children.
+*/
 - (APElement*)firstChildElement {
 	if ([childElements count] > 0)
 		return [childElements objectAtIndex:0];
@@ -113,6 +154,10 @@
 		return nil;
 }
 
+/*
+ Returns the first direct descendant with the specified tag name.
+ Returns nil if the element has no matching child.
+*/
 - (APElement*)firstChildElementNamed:(NSString*)aName {
 	int numElements = [childElements count];
 	for (int i=0; i<numElements; i++)
@@ -125,6 +170,9 @@
 	return nil;
 }
 
+/*
+ Returns the text content of the element, or nil if there is none.
+*/
 - (NSString*)value {
 	if (value == nil)
 		return nil;
@@ -132,14 +180,26 @@
 		return [NSString stringWithString:value];
 }
 
+/*
+ Returns the value for the specified attribute name.
+ Returns nil if no such attribute exists
+*/
 - (NSString*)valueForAttributeNamed:(NSString*)aName {
 	return [attributes objectForKey:aName];
 }
 
+/*
+ Returns a human readable description of this element
+*/
 - (NSString*)description {
 	return name;
 }
 
+/*
+ Returns an xml string of the element, its attributes and children.
+ Useful for debugging.
+ Simply specify 0 for the tabs argument.
+*/
 - (NSString*)prettyXML:(int)tabs {
 	NSMutableString *xmlResult = [[[NSMutableString alloc] init] autorelease];
 	// append open bracket and element name
@@ -177,6 +237,10 @@
 	}
 }
 
+/*
+ Returns an xml string containing a compact representation of this element, its attributes
+ and children.
+*/
 - (NSString*)xml {
 	NSMutableString *xmlResult = [[[NSMutableString alloc] init] autorelease];
 	// append open bracket and element name
@@ -211,6 +275,10 @@
 	}
 }
 
+/*
+ Encodes the predeclared entities in the specified string, and returns a new encoded
+ string.
+*/
 - (NSString*)encodeEntities:(NSMutableString*)aString {
 	if (aString == nil || [aString length] == 0)
 		return nil;
@@ -238,7 +306,7 @@
 							   options:0
 								 range:NSMakeRange(0, [result length])];
 	
-	return result;
+	return [result autorelease];
 }
 
 - (void)dealloc {

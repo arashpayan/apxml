@@ -21,6 +21,13 @@
 #import "APDocument.h"
 #import "APElement.h"
 
+/*
+ You probably only need to care about this class if you want to make
+ changes to the way APXML builds APDocuments.
+ 
+ This class is used as the NSXMLParser delegate that's responsible for
+ building APDocuments.
+*/
 @interface APXMLBuilder : NSObject
 {
 	APElement *rootElement;
@@ -93,9 +100,9 @@
 	[openElement appendValue:string];
 }
 
-- (void)parser:(NSXMLParser *)parser foundIgnorableWhitespace:(NSString *)whitespaceString {
-}
-
+/*
+ Returns the root element of the document that was parsed in.
+*/
 - (APElement*)rootElement {
 	return rootElement;
 }
@@ -113,13 +120,24 @@
 
 
 
-
+/*
+ DOM representation of an XML document
+*/
 @implementation APDocument
 
+/*
+ Returns an APDocument representation of the specified xml. Should be used
+ if you want to read in some XML as a document and want to manipulate it as
+ such.
+*/
 + (id)documentWithXMLString:(NSString*)anXMLString {
 	return [[[APDocument alloc] initWithString:anXMLString] autorelease];
 }
 
+/*
+ Initializes the document with a root element. This should be used
+ if you're creating a new document programmatically.
+*/
 - (id)initWithRootElement:(APElement*)aRootElement {
 	if (self = [super init])
 	{
@@ -129,6 +147,9 @@
 	return self;
 }
 
+/*
+ Initializes the document with an XML string.
+*/
 - (id)initWithString:(NSString*)anXMLString {
 	if (self = [super init])
 	{
@@ -146,10 +167,17 @@
 	return self;
 }
 
+/*
+ Returns the document's root element
+*/
 - (APElement*)rootElement {
 	return rootElement;
 }
 
+/*
+ Returns a pretty string representation of the document with newlines
+ and tabs.
+*/
 - (NSString*)prettyXML {
 	if (rootElement != nil)
 	{
@@ -162,6 +190,10 @@
 		return nil;
 }
 
+/*
+ Returns a compact string representation of the document without newlines
+ or tabs.
+*/
 - (NSString*)xml {
 	if (rootElement != nil)
 	{
