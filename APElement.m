@@ -312,7 +312,6 @@
 - (void)dealloc {
 	[name release];
 	[value release];
-	[parent release];
 	[attributes release];
 	[childElements release];
 	

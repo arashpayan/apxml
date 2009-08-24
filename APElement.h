@@ -32,7 +32,7 @@
 }
 
 @property (readonly) NSString *name;
-@property (nonatomic, retain) APElement *parent;
+@property (nonatomic, assign) APElement *parent;
 
 + (id)elementWithName:(NSString*)aName;
 + (id)elementWithName:(NSString*)aName attributes:(NSDictionary*)someAttributes;
