@@ -181,7 +181,7 @@
 - (NSString*)prettyXML {
 	if (rootElement != nil)
 	{
-		NSMutableString *result = [[NSMutableString alloc] init];
+		NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
 		[result appendString:@"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"];
 		[result appendString:[rootElement prettyXML:0]];
 		return result;
@@ -197,7 +197,7 @@
 - (NSString*)xml {
 	if (rootElement != nil)
 	{
-		NSMutableString *result = [[NSMutableString alloc] init];
+		NSMutableString *result = [[[NSMutableString alloc] init] autorelease];
 		[result appendString:@"<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"];
 		[result appendString:[rootElement xml]];
 		return result;
