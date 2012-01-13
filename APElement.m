@@ -31,14 +31,14 @@
  Returns a new element with the specified tag name
 */
 + (id)elementWithName:(NSString*)aName {
-	return [[[APElement alloc] initWithName:aName] autorelease];
+	return [[APElement alloc] initWithName:aName];
 }
 
 /*
  Returns a new element with the specified tag name and attributes
 */
 + (id)elementWithName:(NSString*)aName attributes:(NSDictionary*)someAttributes {
-	APElement *anElement = [[[APElement alloc] initWithName:aName] autorelease];
+	APElement *anElement = [[APElement alloc] initWithName:aName];
 	[anElement addAttributes:someAttributes];
 	
 	return anElement;
@@ -130,7 +130,7 @@
  Returns an empty array if the element has no children.
 */
 - (NSMutableArray*)childElements:(NSString*)aName {
-	NSMutableArray *result = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *result = [[NSMutableArray alloc] init];
 	
 	int numElements = [childElements count];
 	for (int i=0; i<numElements; i++)
@@ -201,7 +201,7 @@
  Simply specify 0 for the tabs argument.
 */
 - (NSString*)prettyXML:(int)tabs {
-	NSMutableString *xmlResult = [[[NSMutableString alloc] init] autorelease];
+	NSMutableString *xmlResult = [[NSMutableString alloc] init];
 	// append open bracket and element name
 	for (int i=0; i<tabs; i++)
 		[xmlResult appendFormat:@"\t"];
@@ -242,7 +242,7 @@
  and children.
 */
 - (NSString*)xml {
-	NSMutableString *xmlResult = [[[NSMutableString alloc] init] autorelease];
+	NSMutableString *xmlResult = [[NSMutableString alloc] init];
 	// append open bracket and element name
 	[xmlResult appendFormat:@"<%@", name];
 	
@@ -306,16 +306,11 @@
 							   options:0
 								 range:NSMakeRange(0, [result length])];
 	
-	return [result autorelease];
+	return result;
 }
 
 - (void)dealloc {
-	[name release];
-	[value release];
-	[attributes release];
-	[childElements release];
 	
-	[super dealloc];
 }
 
 @end

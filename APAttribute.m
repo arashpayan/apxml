@@ -30,7 +30,7 @@
  Returns an APAttribute with the specified name and value.
 */
 + (id)attributeWithName:(NSString*)aName value:(NSString*)aValue {
-	return [[[APAttribute alloc] initWithName:aName value:aValue] autorelease];
+	return [[APAttribute alloc] initWithName:aName value:aValue];
 }
 
 /*
@@ -47,10 +47,7 @@
 }
 
 - (void)dealloc {
-	[name release];
-	[value release];
-	
-    [super dealloc];
+
 }
 
 @end
