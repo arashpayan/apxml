@@ -1,8 +1,7 @@
 Introduction
 ------------
-I wrote APXML so I could manipulate XML more easily in the programs I write
-for iPhone and iPod Touch. I'm putting it out here in hopes that it will help
-others too. For more information, check out http://arashpayan.com/projects/APXML/
+
+I have update apxml to work easily with ARC. It is an extremely straightforward way to create XML Documents.
 
 Getting Started
 ---------------
