@@ -29,7 +29,7 @@
 + (id)attributeWithName:(NSString*)aName value:(NSString*)aValue;
 - (id)initWithName:(NSString*)aName value:(NSString*)aValue;
 
-@property (readonly) NSString *name;
-@property (readonly) NSString *value;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *value;
 
 @end

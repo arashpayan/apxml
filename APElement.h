@@ -31,8 +31,8 @@
 	NSMutableArray *childElements;
 }
 
-@property (readonly) NSString *name;
-@property (nonatomic, assign) APElement *parent;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) APElement *parent;
 
 + (id)elementWithName:(NSString*)aName;
 + (id)elementWithName:(NSString*)aName attributes:(NSDictionary*)someAttributes;
