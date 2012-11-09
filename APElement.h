@@ -43,6 +43,7 @@
 - (void)addChild:(APElement*)anElement;
 - (void)appendValue:(NSString*)aValue;
 - (int)attributeCount;
+- (NSArray *)attributeNames;
 - (int)childCount;
 - (NSArray*)childElements;
 - (NSMutableArray*)childElements:(NSString*)aName;
