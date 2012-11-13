@@ -110,6 +110,13 @@
 }
 
 /*
+ Returns the names of attributes on this element
+ */
+- (NSArray *)attributeNames {
+	return [attributes allKeys];
+}
+
+/*
  Returns the number of child elements
 */
 - (int)childCount {
@@ -270,7 +277,8 @@
 	}
 	else	// there must be a value
 	{
-		[xmlResult appendFormat:@">%@</%@>", [self encodeEntities:value], name];
+		[xmlResult appendFormat:@"><![CDATA[%@]]></%@>", value, name];
+    //[xmlResult appendFormat:@">%@</%@>", [self encodeEntities:value], name];
 		return xmlResult;
 	}
 }
@@ -281,7 +289,7 @@
 */
 - (NSString*)encodeEntities:(NSMutableString*)aString {
 	if (aString == nil || [aString length] == 0)
-		return nil;
+		return @"";
 	
 	NSMutableString *result = [[NSMutableString alloc] init];
 	[result appendString:aString];
