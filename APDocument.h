@@ -18,9 +18,7 @@
  along with APXML.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
 @class APElement;
-
 
 @interface APDocument : NSObject {
 	APElement *rootElement;

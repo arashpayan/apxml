@@ -28,7 +28,7 @@
  This class is used as the NSXMLParser delegate that's responsible for
  building APDocuments.
 */
-@interface APXMLBuilder : NSObject
+@interface APXMLBuilder : NSObject <NSXMLParserDelegate>
 {
 	APElement *rootElement;
 	APElement *openElement;
@@ -153,6 +153,7 @@
 	{
 		APXMLBuilder *builder = [[APXMLBuilder alloc] init];
 		NSXMLParser *parser = [[NSXMLParser alloc] initWithData:[anXMLString dataUsingEncoding:NSUTF8StringEncoding]];
+
 		[parser setDelegate: builder];
 		[parser parse];
 		
