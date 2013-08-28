@@ -18,9 +18,6 @@
  along with APXML.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import <UIKit/UIKit.h>
-
-
 @interface APAttribute : NSObject {
 	NSString *name;
 	NSString *value;
