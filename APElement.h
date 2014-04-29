@@ -42,9 +42,9 @@
 - (void)addAttributes:(NSDictionary*)someAttributes;
 - (void)addChild:(APElement*)anElement;
 - (void)appendValue:(NSString*)aValue;
-- (int)attributeCount;
+- (NSInteger)attributeCount;
 - (NSArray *)attributeNames;
-- (int)childCount;
+- (NSInteger)childCount;
 - (NSArray*)childElements;
 - (NSMutableArray*)childElements:(NSString*)aName;
 - (APElement*)firstChildElement;
