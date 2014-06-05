@@ -290,7 +290,10 @@
 - (NSString*)encodeEntities:(NSMutableString*)aString {
 	if (aString == nil || [aString length] == 0)
 		return @"";
-	
+	if ([aString hasPrefix:@"<![CDATA["]) {
+        return aString;
+    }
+    
 	NSMutableString *result = [[NSMutableString alloc] init];
 	[result appendString:aString];
 	[result replaceOccurrencesOfString:@"&"
